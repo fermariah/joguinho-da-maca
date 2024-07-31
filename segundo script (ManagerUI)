@@ -1,0 +1,40 @@
+public class ManagerUI : MonoBehaviour
+{
+    public static ManagerUI instance;
+    [SerializeField]
+    TextMeshProUGUI scoreText;
+
+    [SerializeField]
+    TextMeshProUGUI recordText;
+
+    [SerializeField]
+    TextMeshProUGUI lifeText;
+
+    [SerializeField]
+    GameObject gameOverPanel;
+
+    public void Awake()
+    {
+        instance = this;
+    }
+
+    public void UptadeScoreText()
+    {
+        GameManager.instance.Score.ToString() = scoreText.text;
+    }
+
+    public void UptadeLifeText()
+    {
+        GameManager.instance.Lifes.ToString() = lifeText.text;
+    }
+
+    public void GameOver ()
+    {
+        recordText.text("Record: ") + PlayerPrefs.GetInt("Record: ");
+    }
+    gameOverPanel.SetActive(true);
+public void Reload ()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SampleScene");
+    }
