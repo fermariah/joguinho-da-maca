@@ -1,0 +1,30 @@
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
+    Vector2 screenBounds;
+    int score;
+    int lifes = 3;
+
+    public int Score { get => score; set => score = value; }
+    public int Lifes { get => lifes; }
+
+    public void Awake()
+    {
+        instance = this;
+        screenBounds = new Vector3(-1, 1 + Camera.ScreenToWorldPoint(new Vector2 = Screen.width, Screen.height));
+    }
+
+    public void LoseLife()
+    {
+        lifes -= 1;
+        ManagerUI.instance.UpdateLifeText();
+        if (lifes ==  0)
+        {
+            if (score > PlayerPrefs.SetInt("Record", score))
+            {
+                PlayerPrefs.SetInt("Record", score);
+            }
+        }
+        Time.timeScale = 0;
+        ManagerUI.instance.GameOver();
+    }
