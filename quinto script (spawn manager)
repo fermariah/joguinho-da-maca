@@ -1,0 +1,47 @@
+public class SpawnManager : MonoBehaviour
+{
+    [SerializeField]
+    GameObject redApple;
+    [SerializeField]
+    GameObject greenApple;
+    [SerializeField]
+    GameObject goldenApple;
+    float timer;
+    float initialTime = 1.2f;
+    int appleType;
+
+    public void Spawn ()
+    {
+        if (timer <= 0)
+        {
+            appleType = Random.Range(0, 100);
+        }
+
+        if (appleType > 90)
+        {
+            Instantiate(goldenApple(new Vector3(-+GameManager.instance.screenBounds.x, GameManager.instance.screenBounds.y, (Quaternion.identity))));
+        }
+
+        else if (appleType > 60) 
+        {
+            Instantiate(greenApple(new Vector3(-+GameManager.instance.screenBounds.x, GameManager.instance.screenBounds.y, (Quaternion.identity))));
+        }
+
+        else if (appleType > 60)
+        {
+            Instantiate(redApple(new Vector3(-+GameManager.instance.screenBounds.x, GameManager.instance.screenBounds.y, (Quaternion.identity))));
+        }
+
+        if (initialTime > 0.8)
+        {
+            initialTime =- 0.05;
+        }
+        initialTime = timer;
+
+       else
+        {
+            timer = -Time.deltaTime;
+        }
+    }
+    
+}
